@@ -14,6 +14,6 @@ db.once("open", () => {
   console.log("Database Connected");
 });
 
-app.listen("8000", (req, res) => {
+app.listen("3000", (req, res) => {
   console.log("Listening to the server");
 });
