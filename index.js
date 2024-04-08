@@ -25,6 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const port = 3000;
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is listening on port ${port}`);
+});
 
 app.post('/api/location', (req, res) => {
   const { latitude, longitude } = req.body;
