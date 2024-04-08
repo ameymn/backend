@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-const port = process.env.PORT || 1000;
+const port = 3000;
 
 app.post('/api/location', (req, res) => {
   const { latitude, longitude } = req.body;
