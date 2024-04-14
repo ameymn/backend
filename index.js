@@ -25,7 +25,19 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-const dbUrl = process.env.ATLAS;
+const port = process.env.PORT || 3000;
+
+app.get('/',(req,res)=>{
+  res.send("welcome");
+});
+app.post('/api/location', (req, res) => {
+  const { latitude, longitude } = req.body;
+  console.log('Received location:', { latitude, longitude });
+  // Here you can process the received location data as needed
+  res.status(200).json({ message: 'Location received successfully' });
+});
+
+const dbUrl = "mongodb+srv://Shreyas1702:Shreyas1702@cluster0.srr2fxy.mongodb.net/test";
 const secret = process.env.SECRET || "thisshouldbeabettersecret";
 
 const store = new MongoStore({
@@ -52,10 +64,6 @@ app.use((req, res, next) => {
   //   res.locals.success = req.flash("success");
 
   next();
-});
-
-app.get("/", (req, res) => {
-  res.send("Hello");
 });
 
 app.use("/", userRoutes);
