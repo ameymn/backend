@@ -37,3 +37,19 @@ module.exports.driverlogin = async (req, res, next) => {
     });
   }
 };
+
+module.exports.getDriver = async (req, res, next) => {
+  const { id } = req.body;
+
+  const filter = {
+    "ambulance_dd.contact": id,
+  };
+
+  const data = await Transplant.find(filter);
+
+  console.log(data);
+
+  res.status(200).json({
+    data,
+  });
+};
