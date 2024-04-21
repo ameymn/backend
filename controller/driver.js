@@ -45,11 +45,35 @@ module.exports.getDriver = async (req, res, next) => {
     "ambulance_dd.contact": id,
   };
 
-  const data = await Transplant.find(filter);
+  const data = await Transplant.find(filter)
+    .populate("donor_hosp")
+    .populate("reciever_hosp");
 
   console.log(data);
 
+  const list = [];
+
+  for (var i = 0; i < data.length; i++) {
+    const d_lat = data[i].donor_hosp.ltd;
+    const d_lngt = data[i].donor_hosp.lngt;
+    const r_lat = data[i].reciever_hosp.ltd;
+    const r_lngt = data[i].reciever_hosp.lngt;
+    const t_id = data[i].transplant_id;
+    const driver = data[i].ambulance_dd.name;
+
+    var json = {
+      d_lat,
+      d_lngt,
+      r_lat,
+      r_lngt,
+      t_id,
+      driver,
+    };
+
+    list.push(json);
+  }
+
   res.status(200).json({
-    data,
+    list,
   });
 };
