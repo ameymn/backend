@@ -49,9 +49,9 @@ module.exports.getDriver = async (req, res, next) => {
     .populate("donor_hosp")
     .populate("reciever_hosp");
 
-  console.log(data);
-
   const list = [];
+
+  console.log(data);
 
   for (var i = 0; i < data.length; i++) {
     const d_lat = data[i].donor_hosp.ltd;
@@ -60,6 +60,9 @@ module.exports.getDriver = async (req, res, next) => {
     const r_lngt = data[i].reciever_hosp.lngt;
     const t_id = data[i].transplant_id;
     const driver = data[i].ambulance_dd.name;
+    const trans_end = data[i].tran_end;
+
+    console.log(data[i].tran_end);
 
     var json = {
       d_lat,
@@ -68,6 +71,7 @@ module.exports.getDriver = async (req, res, next) => {
       r_lngt,
       t_id,
       driver,
+      trans_end,
     };
 
     list.push(json);
