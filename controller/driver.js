@@ -81,3 +81,23 @@ module.exports.getDriver = async (req, res, next) => {
     list,
   });
 };
+
+module.exports.updateLoc = async (req, res, next) => {
+  const { id, lat, lngt } = req.body;
+
+  const filter = { transplant_id: id };
+
+  const update = {
+    last_update: Date.now(),
+    lat: lat,
+    lngt: lngt,
+  };
+
+  await Transplant.findOneAndUpdate(filter, update, {
+    new: true,
+  });
+
+  res.status(200).json({
+    success: true,
+  });
+};
