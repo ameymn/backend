@@ -93,6 +93,8 @@ module.exports.updateLoc = async (req, res, next) => {
     lngt: lngt,
   };
 
+  console.log(update);
+
   await Transplant.findOneAndUpdate(filter, update, {
     new: true,
   });
