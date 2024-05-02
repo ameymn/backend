@@ -95,6 +95,8 @@ module.exports.updateLoc = async (req, res, next) => {
 
   console.log(update);
 
+  console.log("Transplant Id :-", id);
+
   await Transplant.findOneAndUpdate(filter, update, {
     new: true,
   });
