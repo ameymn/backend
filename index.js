@@ -37,8 +37,7 @@ app.post("/api/location", (req, res) => {
   res.status(200).json({ message: "Location received successfully" });
 });
 
-const dbUrl =
-  "mongodb+srv://shreyas17:shreyas17@cluster0.yddn1lt.mongodb.net/test";
+const dbUrl = "mongodb+srv://shreyas17:shreyas17@cluster0.rpfdyon.mongodb.net/";
 const secret = process.env.SECRET || "thisshouldbeabettersecret";
 
 const store = new MongoStore({
